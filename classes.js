@@ -29,7 +29,21 @@
   Call your class Employee and receive all the data in the constructor in the order listed above.
 */
 
-//Code Here
+class Employee {
+  constructor(first_name, last_name, email, age) {
+    this.first_name = first_name
+    this.last_name = last_name
+    this.email = email
+    this.age = age
+  }
+  makeWidget() {
+    return `${this.first_name} ${this.last_name} Widget`
+  }
+}
+
+let dave = new Employee('Dave', 'Smith')
+dave.makeWidget()
+
 
 
 ////////// PROBLEM 2 //////////
@@ -47,7 +61,19 @@
   Call your new class Manager
 */
 
-//Code Here
+class Manager extends Employee {
+  constructor(first_name, last_name, email, age) {
+    super(first_name, last_name, email, age)
+    this.reports = []
+  }
+  hire(employee) {
+    this.reports.push(employee)
+  }
+  fire(index) {
+    this.reports.splice(index, 1)
+  }
+}
+
 
 
 ////////// PROBLEM 3 //////////
@@ -71,7 +97,38 @@
   Call your new class ProgressiveManager
 */
 
-//Code Here
+class ProgressiveManager extends Manager {
+  constructor(first_name, last_name, email, age) {
+    super(first_name, last_name, email, age)
+    this.title = `Not a manager`
+    this.bonus = 0
+  }
+  hire(employee) {
+    this.reports.push(employee)
+    this.setTitle()
+  }
+  fire(index) {
+    this.reports.splice(index, 1)
+    this.bonus += 100
+    this.setTitle()
+  }
+  setTitle() {
+    if (this.reports.length === 0) {
+      this.title = 'Not a manager'
+    } else if (this.reports.length >= 1 && this.reports.length <= 3) {
+      this.title = 'Barely Manager'
+    } else if (this.reports.length >= 4 && this.reports.length <= 10) {
+      this.title = 'Mostly Manager'
+    } else if (this.reports.length >= 11 && this.reports.length <= 50) {
+      this.title = 'Manager'
+    } else if (this.reports.length >= 51 && this.reports.length <= 100) {
+      this.title = 'Manager Plus'
+    } else {
+      this.title = 'Bestest Manager'
+    }
+  }
+
+}
 
 
 
@@ -98,6 +155,12 @@
         - The anonymous function should decrease wear_and_tear_count by 10, and set needs_reboot to false
 */
 
-//Code Here
+class Machine {
+  constructor() {
+    this.widget_made_count = 0
+    this.wear_and_tear_count = 0
+    this.needs_reboot = false
+  }
+}
 
 
